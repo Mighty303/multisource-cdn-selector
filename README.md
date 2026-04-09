@@ -1,5 +1,56 @@
 # Multimedia Source Selection for a CDN
 
+## CRITICAL: How to Run
+
+### Prerequisites
+
+- `gcloud` CLI installed and on `PATH`
+- `python3` installed
+- `node` / `npm` installed (for the dashboard)
+
+### Step 1 — Place key.json
+
+Put the GCP service account key at `scripts/key.json` (this is where `env.sh` looks for it):
+
+```bash
+mv key.json scripts/key.json
+```
+
+### Step 2 — Authenticate and export environment
+
+```bash
+source scripts/env.sh
+```
+
+This activates the service account and exports `GCP_PROJECT`, `SELECTOR_BASE_URL`, `ORIGIN_VMS`, and `ORIGIN_ENDPOINTS`.
+
+### Step 3 — Verify the selector is reachable
+
+```bash
+curl http://cdn.martinwong.ca/health
+curl http://cdn.martinwong.ca/api/status | python3 -m json.tool
+```
+
+If either command fails, the selector VM is down. Re-bootstrap it:
+
+```bash
+ORIGIN_ENDPOINTS="$ORIGIN_ENDPOINTS" bash scripts/bootstrap_iowa_selector.sh scripts/key.json
+```
+
+### Step 4 — Point the dashboard at the selector
+
+```bash
+echo 'VITE_SELECTOR_BASE_URL=http://cdn.martinwong.ca' > dash/.env.local
+```
+
+### Step 5 — Start the dashboard
+
+```bash
+cd dash && npm install && npm run dev
+```
+
+Open the URL printed by Vite (default: `http://localhost:5173`). Server metrics, incident logs, and the active-server green line on the network map all populate within ~5 seconds of the first selector poll.
+
 This repository implements a simplified DASH CDN experiment on Google Cloud Platform using a custom Python selector instead of HAProxy as the primary decision layer.
 
 ## Architecture
@@ -50,13 +101,13 @@ Recommended firewall posture:
 
 ## Environment Setup
 
-A pre-configured `env.sh` at the repo root handles GCP authentication and sets all required variables. Source it once before running any scripts:
+A pre-configured `scripts/env.sh` handles GCP authentication and sets all required variables. Source it once before running any scripts:
 
 ```bash
-source env.sh
+source scripts/env.sh
 ```
 
-This activates the service account from `key.json` and exports `GCP_PROJECT`, `SELECTOR_BASE_URL`, `ORIGIN_VMS`, and `ORIGIN_ENDPOINTS` with the correct values for the deployed VMs.
+This activates the service account from `scripts/key.json` and exports `GCP_PROJECT`, `SELECTOR_BASE_URL`, `ORIGIN_VMS`, and `ORIGIN_ENDPOINTS` with the correct values for the deployed VMs.
 
 ## Deployment Workflow
 

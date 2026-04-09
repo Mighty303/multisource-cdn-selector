@@ -1,1 +1,8 @@
 key.json
+
+# Large video files
+*.mp4
+*.mov
+
+# Terraform provider binaries
+terraform/.terraform/

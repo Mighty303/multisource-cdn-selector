@@ -6,3 +6,21 @@ key.json
 
 # Terraform provider binaries
 terraform/.terraform/
+
+# Terraform state (contains secrets and infrastructure details)
+*.tfstate
+*.tfstate.*
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Environment files (use .env.example as templates instead)
+.env
+.env.*
+!.env.example
+!.env.*.example
+.claude/

@@ -2,7 +2,7 @@
 
 ## Demo
 
-<video src="demo.mp4" controls width="100%"></video>
+<video src="https://github.com/Mighty303/CMPT-471-mini-project/raw/main/demo.mp4" controls width="100%"></video>
 
 ## CRITICAL: How to Run
 

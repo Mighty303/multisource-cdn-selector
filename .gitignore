@@ -3,6 +3,7 @@ key.json
 # Large video files
 *.mp4
 *.mov
+!demo.mp4
 
 # Terraform provider binaries
 terraform/.terraform/

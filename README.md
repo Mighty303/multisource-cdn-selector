@@ -1,5 +1,9 @@
 # Multimedia Source Selection for a CDN
 
+## Demo
+
+<video src="demo.mp4" controls width="100%"></video>
+
 ## CRITICAL: How to Run
 
 ### Prerequisites

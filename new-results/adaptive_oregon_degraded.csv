@@ -1,0 +1,17 @@
+mode,clients,http_code,time_total,url_effective
+adaptive,1,200,1.220329,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,5,200,3.003012,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,5,200,3.735409,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,5,200,4.927252,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,5,200,6.141682,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,5,200,6.276988,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,6.861977,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,7.015503,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,7.609608,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,7.855203,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,7.928156,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,8.377372,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,9.123908,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,9.183357,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,10.685203,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+adaptive,10,200,11.209895,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto

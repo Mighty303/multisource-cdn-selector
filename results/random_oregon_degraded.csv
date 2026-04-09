@@ -1,0 +1,17 @@
+mode,clients,http_code,time_total,url_effective
+random,1,200,45.640886,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+random,5,200,12.389573,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,5,200,12.517305,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,5,200,12.579928,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,5,200,80.295871,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+random,5,200,87.676496,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+random,10,200,25.595102,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+random,10,200,25.637933,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+random,10,200,25.978819,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+random,10,200,26.505163,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+random,10,200,26.554473,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+random,10,200,26.705111,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,10,200,26.694996,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,10,200,26.753786,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+random,10,200,65.573335,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+random,10,200,77.004478,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon

@@ -1,0 +1,9 @@
+Place DASH-encoded video folders here. Each subfolder should contain
+a manifest.mpd and segment files. Example structure:
+dash_content/
+├── clip1/
+│   ├── manifest.mpd
+│   └── segments/
+├── clip2/
+│   ├── manifest.mpd
+│   └── segments/

@@ -1,0 +1,17 @@
+mode,clients,http_code,time_total,url_effective
+round_robin,1,200,1.869343,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,5,200,9.872707,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,5,200,11.986853,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+round_robin,5,200,12.047263,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+round_robin,5,200,12.087642,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+round_robin,5,200,12.622253,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+round_robin,10,200,22.014229,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,10,200,22.708291,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,10,200,22.811879,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,10,200,22.830342,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+round_robin,10,200,23.427180,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+round_robin,10,200,23.712809,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+round_robin,10,200,23.827485,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia
+round_robin,10,200,23.945655,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+round_robin,10,200,23.870820,http://34.130.216.13/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=toronto
+round_robin,10,200,23.825491,http://35.236.73.111/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=ncalifornia

@@ -1,0 +1,17 @@
+mode,clients,http_code,time_total,url_effective
+adaptive,1,200,4.345234,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,5,200,11.718503,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,5,200,11.723023,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,5,200,11.662404,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,5,200,11.788081,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,5,200,11.803267,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,27.843614,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,27.864096,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.398744,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.422576,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.515114,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.524026,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.541101,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.540355,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.526543,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon
+adaptive,10,200,28.540469,http://136.117.216.224/video/dash_content/clip1/360p_dashinit.mp4?_selector_server=oregon

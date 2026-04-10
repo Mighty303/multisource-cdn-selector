@@ -58,7 +58,7 @@ Open the Vite URL printed in the terminal, usually `http://localhost:5173`.
 
 These verify manifest delivery, segment redirect behavior, and selector routing.
 
-### 6. Optional: run the full backend test matrix
+### 6. Backend: Run the full backend test matrix
 
 If you also want to inspect backend behavior in more detail, run:
 
@@ -67,6 +67,14 @@ scripts/run_all_tests.sh
 ```
 
 This writes CSV outputs to `new-results/`, including baseline runs and degraded-server runs for all three selector modes.
+
+To generate the summary and open the two result charts:
+
+```bash
+python3 scripts/summarize_results.py new-results
+open new-results/overall_avg_by_condition.svg
+open new-results/delta_vs_baseline.svg
+```
 
 ## Admin Workflow
 
@@ -248,4 +256,3 @@ These logs are intended for comparison against baseline modes such as `random` a
 - After installation, open a new terminal and run `gcloud init` to authenticate and select your GCP project.
 - `gcloud` commands can be run from PowerShell once the CLI is on `PATH`.
 - Repo scripts under `scripts/*.sh` use Bash syntax, so run them from Git Bash or WSL after loading `scripts/env.example`.
-

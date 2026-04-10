@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import statistics
@@ -8,7 +9,7 @@ from collections import defaultdict
 from pathlib import Path
 
 
-RESULTS_DIR = Path("results")
+DEFAULT_RESULTS_DIR = Path("results")
 MODES = ["adaptive", "random", "round_robin"]
 CONDITIONS = ["baseline", "toronto_degraded", "oregon_degraded", "ncalifornia_degraded"]
 MODE_LABELS = {
@@ -29,9 +30,9 @@ MODE_COLORS = {
 }
 
 
-def load_csv_runs() -> dict[str, dict[str, dict[str, object]]]:
+def load_csv_runs(results_dir: Path) -> dict[str, dict[str, dict[str, object]]]:
     runs: dict[str, dict[str, dict[str, object]]] = defaultdict(dict)
-    for path in sorted(RESULTS_DIR.glob("*.csv")):
+    for path in sorted(results_dir.glob("*.csv")):
         if path.name == "load_test_results.csv":
             continue
         with path.open(newline="", encoding="utf-8") as handle:
@@ -67,9 +68,9 @@ def load_csv_runs() -> dict[str, dict[str, dict[str, object]]]:
     return runs
 
 
-def load_jsonl_support() -> dict[str, dict[str, object]]:
+def load_jsonl_support(results_dir: Path) -> dict[str, dict[str, object]]:
     summaries: dict[str, dict[str, object]] = {}
-    for path in sorted(RESULTS_DIR.glob("*.jsonl")):
+    for path in sorted(results_dir.glob("*.jsonl")):
         # These are tail snapshots, not clean per-run logs, so keep them separate.
         try:
             with path.open(encoding="utf-8") as handle:
@@ -274,10 +275,10 @@ def svg_bar_chart(
     output_path.write_text("\n".join(parts), encoding="utf-8")
 
 
-def write_outputs(runs: dict[str, dict[str, dict[str, object]]]) -> None:
-    overall_chart = RESULTS_DIR / "overall_avg_by_condition.svg"
-    delta_chart = RESULTS_DIR / "delta_vs_baseline.svg"
-    summary_md = RESULTS_DIR / "RESULTS_SUMMARY.md"
+def write_outputs(runs: dict[str, dict[str, dict[str, object]]], results_dir: Path) -> None:
+    overall_chart = results_dir / "overall_avg_by_condition.svg"
+    delta_chart = results_dir / "delta_vs_baseline.svg"
+    summary_md = results_dir / "RESULTS_SUMMARY.md"
 
     overall_series = []
     delta_series = []
@@ -316,7 +317,7 @@ def write_outputs(runs: dict[str, dict[str, dict[str, object]]]) -> None:
     summary = [
         "# Results Summary",
         "",
-        "Generated from the experiment CSV files in `results/`.",
+        f"Generated from the experiment CSV files in `{results_dir}/`.",
         "",
         "## Key Findings",
         "",
@@ -346,7 +347,7 @@ def write_outputs(runs: dict[str, dict[str, dict[str, object]]]) -> None:
         "",
         "## JSONL Notes",
         "",
-        "- The `.jsonl` files in `results/` are useful supporting evidence for selector decisions, metrics, and event types.",
+        f"- The `.jsonl` files in `{results_dir}/` are useful supporting evidence for selector decisions, metrics, and event types.",
         "- They are not perfectly isolated per run because `collect_logs.sh` tails the last 5000 lines from the shared live selector log.",
         "- For report-quality quantitative comparisons, the CSV files are the cleaner source of truth.",
         "",
@@ -361,22 +362,32 @@ def write_outputs(runs: dict[str, dict[str, dict[str, object]]]) -> None:
         for mode in MODES:
             csv_name = Path(runs[condition][mode]["path"]).name
             jsonl_name = f"{mode}_{condition}.jsonl"
-            summary.append(f"- [{csv_name}](/Users/anguscheng/Desktop/multimedia-src-selection/results/{csv_name})")
-            if (RESULTS_DIR / jsonl_name).exists():
-                summary.append(f"- [{jsonl_name}](/Users/anguscheng/Desktop/multimedia-src-selection/results/{jsonl_name})")
+            summary.append(f"- [{csv_name}](./{csv_name})")
+            if (results_dir / jsonl_name).exists():
+                summary.append(f"- [{jsonl_name}](./{jsonl_name})")
         summary.append("")
 
     summary_md.write_text("\n".join(summary), encoding="utf-8")
 
 
 def main() -> None:
-    runs = load_csv_runs()
+    parser = argparse.ArgumentParser(description="Summarize experiment CSVs and generate SVG charts")
+    parser.add_argument(
+        "results_dir",
+        nargs="?",
+        default=str(DEFAULT_RESULTS_DIR),
+        help="Directory containing experiment CSV files (default: results)",
+    )
+    args = parser.parse_args()
+
+    results_dir = Path(args.results_dir)
+    runs = load_csv_runs(results_dir)
     if not runs:
-        raise SystemExit("No experiment CSV files found in results/")
-    write_outputs(runs)
-    print(f"Wrote {RESULTS_DIR / 'RESULTS_SUMMARY.md'}")
-    print(f"Wrote {RESULTS_DIR / 'overall_avg_by_condition.svg'}")
-    print(f"Wrote {RESULTS_DIR / 'delta_vs_baseline.svg'}")
+        raise SystemExit(f"No experiment CSV files found in {results_dir}/")
+    write_outputs(runs, results_dir)
+    print(f"Wrote {results_dir / 'RESULTS_SUMMARY.md'}")
+    print(f"Wrote {results_dir / 'overall_avg_by_condition.svg'}")
+    print(f"Wrote {results_dir / 'delta_vs_baseline.svg'}")
 
 
 if __name__ == "__main__":

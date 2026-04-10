@@ -4,58 +4,73 @@
 
 <video src="https://github.com/user-attachments/assets/31fc4333-d45f-496f-9162-627d8d0f9da7" controls width="100%"></video>
 
-## CRITICAL: How to Run
+This repository implements a simplified DASH CDN experiment on Google Cloud Platform using a custom Python selector instead of HAProxy as the primary decision layer.
 
-### Prerequisites
+## Test Flow
 
-- `gcloud` CLI installed and on `PATH`
-- `python3` installed
-- `node` / `npm` installed (for the dashboard)
+Use this section if the deployment already exists and you only need to verify the frontend and backend behavior.
 
-### Step 1 — Place key.json
+### 1. Place the GCP key
 
-Put the GCP service account key at `scripts/key.json` (this is where `env.sh` looks for it):
+Put the service account key at `scripts/key.json`:
 
 ```bash
 mv key.json scripts/key.json
 ```
 
-### Step 2 — Authenticate and export environment
+### 2. Load the environment
+
+Source the repo's environment script:
 
 ```bash
 source scripts/env.sh
 ```
 
-This activates the service account and exports `GCP_PROJECT`, `SELECTOR_BASE_URL`, `ORIGIN_VMS`, and `ORIGIN_ENDPOINTS`.
+This authenticates with GCP and exports `GCP_PROJECT`, `SELECTOR_BASE_URL`, `ORIGIN_VMS`, and `ORIGIN_ENDPOINTS`.
 
-### Step 3 — Verify the selector is reachable
+### 3. Verify the selector is up
 
 ```bash
 curl http://cdn.martinwong.ca/health
 curl http://cdn.martinwong.ca/api/status | python3 -m json.tool
 ```
 
-If either command fails, the selector VM is down. Re-bootstrap it:
+If either command fails, re-bootstrap the selector VM:
 
 ```bash
 ORIGIN_ENDPOINTS="$ORIGIN_ENDPOINTS" bash scripts/bootstrap_iowa_selector.sh scripts/key.json
 ```
 
-### Step 4 — Point the dashboard at the selector
+### 4. Point the dashboard at the selector
 
 ```bash
 echo 'VITE_SELECTOR_BASE_URL=http://cdn.martinwong.ca' > dash/.env.local
 ```
 
-### Step 5 — Start the dashboard
+### 5. Start the frontend
 
 ```bash
 cd dash && npm install && npm run dev
 ```
 
-Open the URL printed by Vite (default: `http://localhost:5173`). Server metrics, incident logs, and the active-server green line on the network map all populate within ~5 seconds of the first selector poll.
+Open the Vite URL printed in the terminal, usually `http://localhost:5173`.
 
-This repository implements a simplified DASH CDN experiment on Google Cloud Platform using a custom Python selector instead of HAProxy as the primary decision layer.
+
+These verify manifest delivery, segment redirect behavior, and selector routing.
+
+### 6. Optional: run the full backend test matrix
+
+If you also want to inspect backend behavior in more detail, run:
+
+```bash
+scripts/run_all_tests.sh
+```
+
+This writes CSV outputs to `new-results/`, including baseline runs and degraded-server runs for all three selector modes.
+
+## Admin Workflow
+
+The remaining sections are for provisioning, deployment, impairment testing, and log collection.
 
 ## Architecture
 
@@ -94,7 +109,7 @@ Lower scores are preferred.
 
 Provision 4 Compute Engine VMs manually:
 
-- 1 selector VM in Oregon
+- 1 selector VM in Iowa
 - 3 origin VMs in Oregon, Toronto, and Northern California
 
 Recommended firewall posture:
@@ -233,3 +248,4 @@ These logs are intended for comparison against baseline modes such as `random` a
 - After installation, open a new terminal and run `gcloud init` to authenticate and select your GCP project.
 - `gcloud` commands can be run from PowerShell once the CLI is on `PATH`.
 - Repo scripts under `scripts/*.sh` use Bash syntax, so run them from Git Bash or WSL after loading `scripts/env.example`.
+
